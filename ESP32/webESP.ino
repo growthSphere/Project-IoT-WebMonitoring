@@ -3,17 +3,17 @@
 //#include <ESP32Websvr.h>
 #include <HTTPClient.h>
 #include <DHT.h>
-#define DHT11_PIN  4 // ESP32 pin GPIO21 connected to DHT22 sensor
-#define POWER_PIN1  17 // ESP32 pin GPIO17 connected to sensor's VCC pin
-#define SIGNAL_PIN 35 // ESP32 pin GPIO36 (ADC0) connected to sensor's signal pin
-#define POWER_PIN2 19  // ESP32's pin GPIO19 that provides the power to the rain sensor
-//#define DO_PIN 21     // ESP32's pin GPIO21 connected to DO pin of the rain sensor
-#define AO_PIN 36     // ESP32's pin GPIO36 connected to AO pin of the rain sensor
+#define DHT11_PIN  4 // Pin DHT11
+#define POWER_PIN1  17 // Pin 17 esp ke vcc waterlevel sensor
+#define SIGNAL_PIN 35 // Pin 35 esp ke sinyal waterlevel sensor
+#define POWER_PIN2 19  // Pin 19 esp ke vcc rain sensor
+
+#define AO_PIN 36     // Pin 36 esp ke analog rain sensor
 #define SENSOR_MIN 0
 #define SENSOR_MAX 521
 
-int value = 0; // variable to store the sensor value
-int air = 0; // variable to store the water level
+int value = 0; // nilai waterlevel sensor
+int air = 0; // variable untuk menentukan level air
 int dataKelembapan;
 float dataSuhu;
 String dataAir;
@@ -30,11 +30,11 @@ long jeda = 5000;
 
 void setup() {
   Serial.begin(115200);
-  dht11.begin(); // initialize the DHT22 sensor
+  dht11.begin(); // inisialisasi sensor DHT11
   analogSetAttenuation(ADC_11db);
-  pinMode(POWER_PIN1, OUTPUT);   // configure D7 pin as an OUTPUT
-  digitalWrite(POWER_PIN1, LOW); // turn the sensor OFF
-  pinMode(POWER_PIN2, OUTPUT);  // configure the power pin pin as an OUTPUT
+  pinMode(POWER_PIN1, OUTPUT);   
+  digitalWrite(POWER_PIN1, LOW); 
+  pinMode(POWER_PIN2, OUTPUT);  
   //WIFI KONEKSI  
   WiFi.begin(ssid, pass);
   while (WiFi.status() != WL_CONNECTED) {
@@ -66,13 +66,13 @@ String urlEncode(String str) {
 }
 
 void dhtsensor(){
-   // read humidity
+   // baca kelembapan
   dataKelembapan  = dht11.readHumidity();
-  // read temperature in Celsius
+  // baca suhu
   dataSuhu = dht11.readTemperature();
   
 
-  // check whether the reading is successful or not
+  // cek kondisi sensor
   if ( isnan(dataSuhu) ||  isnan(dataKelembapan)) {
     Serial.println("Gagal membaca sensor!");
   } 
@@ -88,17 +88,17 @@ void dhtsensor(){
     Serial.println("°C  ~  ");
   }
 
-  // wait a 2 seconds between readings
+  // delay 100ms
   delay(100);
 }
 
 void waterlv() {
-  digitalWrite(POWER_PIN1, HIGH);  // turn the sensor ON
-  delay(10);                      // wait 10 milliseconds
-  value = analogRead(SIGNAL_PIN); // read the analog value from sensor
-  digitalWrite(POWER_PIN1, LOW);   // turn the sensor OFF
+  digitalWrite(POWER_PIN1, HIGH);  
+  delay(10);                      
+  value = analogRead(SIGNAL_PIN); 
+  digitalWrite(POWER_PIN1, LOW);   
 
-  air = map(value, SENSOR_MIN, SENSOR_MAX, 0, 4); // 4 levels
+  air = map(value, SENSOR_MIN, SENSOR_MAX, 0, 4); // 4 level
   Serial.print("Water level: ");
   Serial.println(air);
   
@@ -119,13 +119,13 @@ void waterlv() {
 
 void rain() {
   
-  digitalWrite(POWER_PIN2, HIGH);  // turn the rain sensor's power  ON
-  delay(10);                      // wait 10 milliseconds
+  digitalWrite(POWER_PIN2, HIGH);  
+  delay(10);                      
 
   int cuaca = analogRead(AO_PIN);
-  digitalWrite(POWER_PIN2, LOW);  // turn the rain sensor's power OFF
+  digitalWrite(POWER_PIN2, LOW);  
   
- //Serial.println(rain_value);
+ //Serial.println(cuaca);
   if (cuaca >=4000){
     dataCuaca = "Tidak Hujan";
     Serial.println("Tidak Hujan");
