@@ -1,6 +1,5 @@
 #include <WiFi.h>
 #include <WiFiClient.h> 
-//#include <ESP32Websvr.h>
 #include <HTTPClient.h>
 #include <DHT.h>
 #define DHT11_PIN  4 // Pin DHT11
@@ -21,9 +20,9 @@ String dataCuaca;
 DHT dht11(DHT11_PIN, DHT11);
 
 
-const char* ssid = "RAKUTEN ATAS2";
-const char* pass = "toyota1000";
-const char* server = "http://192.168.0.101";
+const char* ssid = "ssid";
+const char* pass = "pass";
+const char* server = "alamat ipv4";
 
 long zero = 0;
 long jeda = 5000;
