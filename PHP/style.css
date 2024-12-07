@@ -1,0 +1,107 @@
+html, body {
+    height: 100%; /* Mengatur tinggi HTML dan body agar mencakup seluruh halaman */
+    margin: 0; /* Menghilangkan margin default */
+    display: flex; /* Menggunakan flexbox pada body */
+    flex-direction: column; /* Membuat elemen berada dalam kolom (vertikal) */
+    background-color: #146898;
+}
+
+/* Kontainer utama yang berisi semua konten */
+.container {
+    flex: 1; /* Membuat kontainer utama mengambil ruang yang tersedia, sehingga footer tetap di bawah */
+    text-align: center;
+}
+
+/* Styling footer */
+.footer {
+    background-color: #59c2ff; /* Warna latar belakang footer */
+    color: white; /* Warna teks di dalam footer */
+    text-align: center; /* Menyelaraskan teks dan gambar di tengah */
+    position: relative; /* Posisi relatif untuk kontrol elemen di dalamnya */
+    width: 100%; /* Memastikan footer mengambil lebar penuh */
+    height: 150px; /* Menentukan ketinggian footer dengan piksel */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Menjaga gambar berada di bagian bawah footer */
+}
+
+/* Styling gambar footer */
+.footer-image {
+    width: 100%; /* Membuat gambar mengikuti lebar layar */
+    height: 100px; /* Menentukan tinggi gambar footer dalam piksel */
+    object-fit: cover; /* Menjaga rasio gambar agar tidak terdistorsi dan memenuhi seluruh ruang */
+    position: absolute; /* Menggunakan posisi absolute untuk menempatkan gambar di bawah */
+    bottom: 0; /* Menempatkan gambar di bagian bawah footer */
+    left: 0; /* Menjaga gambar berada di sebelah kiri */
+}
+
+/* Styling teks footer */
+.footer p {
+    font-size: 12pt; /* Ukuran teks menggunakan pt untuk footer */
+    color: white; /* Warna teks agar terlihat jelas */
+    margin-top: 10px; /* Jarak antara gambar dan teks */
+    padding-top: 20px; /* Memberikan ruang di atas teks */
+    z-index: 1; /* Menjaga teks berada di atas gambar */
+}
+
+/* Styling kotak kontainer */
+.kotak {
+    width: 200px; /* Ukuran kotak dalam piksel */
+    height: 200px; /* Ukuran kotak dalam piksel */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 4px solid #333;
+    display: inline-table;
+    background-color: #fffffe;
+    border-radius: 15px; /* Mengatur radius sudut, nilai dapat disesuaikan */
+}
+
+/* Styling nilai dalam kotak */
+.nilai {
+    font-size: 40pt; /* Ukuran font menggunakan pt */
+}
+
+/* Styling header */
+.header {
+    background-color: #59c2ff; /* Warna latar belakang */
+    color: white; /* Warna teks */
+    padding: 20px; /* Spasi di dalam header */
+    display: flex; /* Menggunakan Flexbox */
+    align-items: center; /* Menyelaraskan secara vertikal */
+    justify-content: center; /* Menyelaraskan secara horizontal */
+}
+
+/* Konten header yang berisi logo dan teks */
+.header-content {
+    display: flex; /* Flexbox untuk menyusun logo dan teks secara horizontal */
+    align-items: center; /* Menyelaraskan secara vertikal */
+    gap: 20px; /* Jarak antara logo dan teks */
+}
+
+/* Styling logo dalam header */
+.logo {
+    width: 100px; /* Ukuran logo dalam piksel */
+    height: auto; /* Otomatis menjaga proporsi */
+}
+
+/* Styling teks di dalam header */
+.header-text {
+    text-align: left; /* Teks di dalam bagian teks rata kiri */
+}
+
+.header-text h1 {
+    font-size: 28pt; /* Ukuran teks utama menggunakan pt */
+    margin: 0; /* Hilangkan margin bawaan */
+}
+
+.header-text p {
+    font-size: 14pt; /* Ukuran paragraf menggunakan pt */
+    margin: 5px 0; /* Jarak antara paragraf dan heading */
+}
