@@ -6,9 +6,9 @@ html, body {
     background-color: #146898;
 }
 
-/* Kontainer utama yang berisi semua konten */
+/* Kontainer utama kotak  */
 .container {
-    flex: 1; /* Membuat kontainer utama mengambil ruang yang tersedia, sehingga footer tetap di bawah */
+    flex: 1; /* Membuat kontainer utama untuk beri ruang pada kotak, sehingga footer tetap di bawah */
     text-align: center;
 }
 
